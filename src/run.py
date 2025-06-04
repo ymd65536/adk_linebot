@@ -5,9 +5,9 @@ from google.adk.tools.agent_tool import AgentTool
 from google.adk.sessions import InMemorySessionService, Session
 from google.adk.runners import Runner
 
-from agents.main_agent import agent
-from agents.main_agent.sub_agents.hello_agent.agent import hello_agent
-from agents.main_agent.sub_agents.summarize_agent.agent import summarize_agent
+from agents.human.main_agent import agent
+from agents.human.main_agent.sub_agents.hello_agent.agent import hello_agent
+from agents.human.main_agent.sub_agents.summarize_agent.agent import summarize_agent
 
 msg = """
 文章の要約
