@@ -4,7 +4,7 @@ from google.adk.agents import Agent
 MODEL = "gemini-2.0-flash"
 
 summarize_agent = LlmAgent(
-    name="summarize_agent",
+    name="summarize",
     model=MODEL,
     description=(
         "要約を行うエージェントです。"

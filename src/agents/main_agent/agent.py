@@ -7,7 +7,7 @@ MODEL = "gemini-2.0-flash"
 
 
 main_agent = LlmAgent(
-    name="root_agent",
+    name="line_bot",
     model=MODEL,
     description=("挨拶と要約を行うエージェントです。"),
     instruction="あいさつをして、要約を行うエージェントです。",

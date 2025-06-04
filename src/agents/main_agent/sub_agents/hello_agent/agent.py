@@ -4,7 +4,7 @@ from google.adk.agents import Agent
 MODEL = "gemini-2.0-flash"
 
 hello_agent = LlmAgent(
-    name="hello_agent",
+    name="greeting",
     model=MODEL,
     description=(
         "挨拶をしてくれるエージェントです。"
