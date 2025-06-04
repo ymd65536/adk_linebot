@@ -34,6 +34,7 @@ Setup environment variables.
 ```bash
 export GOOGLE_CLOUD_PROJECT=`gcloud config list --format 'value(core.project)'`
 export GOOGLE_CLOUD_LOCATION=us-central1
+export GOOGLE_GENAI_USE_VERTEXAI=TRUE
 ```
 
 Setup `.env` file.
