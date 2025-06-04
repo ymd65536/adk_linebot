@@ -53,5 +53,6 @@ pip install google-adk
 Run the agent.
 
 ```bash
+cd src/agents
 adk web
 ```
