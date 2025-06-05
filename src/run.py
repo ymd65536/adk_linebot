@@ -2,10 +2,9 @@ import asyncio
 from google.genai import types
 from google.adk.agents import LlmAgent
 from google.adk.tools.agent_tool import AgentTool
-from google.adk.sessions import InMemorySessionService, Session
+from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 
-from agents.human.main_agent import agent
 from agents.human.main_agent.sub_agents.hello_agent.agent import hello_agent
 from agents.human.main_agent.sub_agents.summarize_agent.agent import summarize_agent
 
@@ -113,27 +112,6 @@ async def call_agent_async(query: str, user_id: str) -> str:
     return final_response_text
 
 async def run():
-    async def get_or_create_session(user_id):  # Make function async
-        if user_id not in active_sessions:
-            # Create a new session for this user
-            session_id = f"session_{user_id}"
-            # Add await for the async session creation
-            await session_service.create_session(
-                app_name=APP_NAME, user_id=user_id, session_id=session_id
-            )
-            active_sessions[user_id] = session_id
-            print(
-                f"New session created: App='{APP_NAME}', User='{user_id}', Session='{session_id}'"
-            )
-        else:
-            # Use existing session
-            session_id = active_sessions[user_id]
-            print(
-                f"Using existing session: App='{APP_NAME}', User='{user_id}', Session='{session_id}'"
-            )
-
-        return session_id
-
     print(f"Runner created for agent '{runner.agent.name}'.")
     response = await call_agent_async(msg, user_id)
 
