@@ -73,3 +73,31 @@ cd src
 docker build . -t $image_name --platform linux/amd64
 docker tag $image_name asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$image_name/$image_name && docker push asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$image_name/$image_name:latest
 ```
+
+```bash
+export GOOGLE_GENAI_USE_VERTEXAI=TRUE
+```
+
+CHANNEL_SECRETとCHANNEL_ACCESS_TOKENの環境変数をSecret Managerに登録する。
+
+```bash
+gcloud secrets create LINE_CHANNEL_SECRET \
+    --replication-policy="automatic"
+```
+
+```bash
+echo -n "" | gcloud secrets versions add LINE_CHANNEL_SECRET --data-file=-
+```
+
+```bash
+gcloud secrets create LINE_CHANNEL_ACCESS_TOKEN \
+    --replication-policy="automatic"
+```
+
+```bash
+echo -n "" | gcloud secrets versions add LINE_CHANNEL_ACCESS_TOKEN --data-file=-
+```
+
+## Cloud Runのデプロイ
+
+todo: サービスアカウントの作成を書く。[参考](https://zenn.dev/ymd65536/articles/recently_read_books_bot_gemini15#cloudrun%E3%81%A7docker%E3%82%A4%E3%83%A1%E3%83%BC%E3%82%B8%E3%82%92%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4)
