@@ -26,6 +26,7 @@ setup gcloud.
 
 ```bash
 gcloud auth login
+gcloud config set project PROJECT_ID
 gcloud auth application-default login
 ```
 
@@ -56,4 +57,19 @@ Run the agent.
 ```bash
 cd src/agents
 adk web
+```
+
+## Google Cloud
+
+```bash
+export GOOGLE_CLOUD_PROJECT=`gcloud config list --format 'value(core.project)'` && echo $GOOGLE_CLOUD_PROJECT
+export image_name=adk-linebot
+
+gcloud auth configure-docker asia-northeast1-docker.pkg.dev
+gcloud artifacts repositories create $image_name --location=asia-northeast1 --repository-format=docker --project=$GOOGLE_CLOUD_PROJECT
+
+docker rmi asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$image_name/$image_name && docker rmi $image_name
+cd src
+docker build . -t $image_name --platform linux/amd64
+docker tag $image_name asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$image_name/$image_name && docker push asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/$image_name/$image_name:latest
 ```
