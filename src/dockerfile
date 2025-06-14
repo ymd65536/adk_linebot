@@ -4,6 +4,8 @@ ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY linebot.py ./app.py
 COPY requirements.txt ./
+COPY run_line_beta.py ./
+COPY agents ./agents
 
 RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r requirements.txt
 

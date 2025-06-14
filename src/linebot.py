@@ -1,9 +1,11 @@
 import os
+import asyncio # 追加
 
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from run_line_beta import call_agent_async
 
 
 app = Flask(__name__)
@@ -36,10 +38,10 @@ def handle_message(event):
 
     if event_type == 'message':
         if message_type == 'text':
-
+            response_text = asyncio.run(call_agent_async(event.message.text, "user_id"))
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(text=str(event.message.text))
+                TextSendMessage(text=str(response_text))
             )
 
 
