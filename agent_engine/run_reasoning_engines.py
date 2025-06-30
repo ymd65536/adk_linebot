@@ -14,6 +14,6 @@ session = app.create_session(
 for event in app.stream_query(
     user_id="user_12345",
     session_id=session.id,
-    message="whats the weather in new york",
+    message="今日の天気を教えてください。",
 ):
     print(event)
